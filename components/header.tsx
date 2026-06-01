@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image"
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,12 +25,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="container flex h-14 items-center justify-between px-4">
-        {/* LOGO 區域 */}
+        {/* logo */}
         <Link
           href="/"
-          className="flex items-center space-x-2 font-bold text-xl"
+          className="flex h-14 items-center space-x-2 font-bold text-xl"
         >
-          <span>MyLogo</span>
+          <Image src="/main-logo.png" alt="Logo" width={768} height={256} className="h-full w-auto object-contain" />
         </Link>
 
         {/* desktop */}
