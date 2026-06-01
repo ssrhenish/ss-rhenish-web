@@ -14,10 +14,10 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 const navItems = [
   { label: "主頁", href: "/" },
   { label: "關於本堂", href: "/about" },
-  { label: "主日崇拜", href: "/services" },
-  { label: "團契", href: "/services" },
-  { label: "分享", href: "/services" },
-  { label: "五十週年紀念待刊", href: "/services" },
+  { label: "主日崇拜", href: "/worship" },
+  { label: "團契", href: "/fellowship" },
+  { label: "分享", href: "/sharing" },
+  { label: "五十週年紀念待刊", href: "/50th-anniversary" },
 ];
 
 export function Header() {
