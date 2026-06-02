@@ -1,24 +1,67 @@
 import Link from "next/link";
-import Image from "next/image"
+import Image from "next/image";
+import ListItem from "next/link";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
+  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
+  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-// 導航連結資料
+// content for header navigation menu
 const navItems = [
-  { label: "主頁", href: "/" },
-  { label: "關於本堂", href: "/about" },
-  { label: "主日崇拜", href: "/worship" },
-  { label: "團契", href: "/fellowship" },
-  { label: "分享", href: "/sharing" },
-  { label: "五十週年紀念待刊", href: "/50th-anniversary" },
+  {
+    label: "主頁",
+    href: "/",
+  },
+  {
+    label: "關於本堂",
+    items: [
+      { label: "本堂簡介", href: "/about" },
+      { label: "本堂歷史", href: "/about/history" },
+      { label: "本堂架構", href: "/about/structure" },
+      { label: "教牧同工", href: "/about/pastors" },
+      { label: "各部事工", href: "/about/departments" },
+    ],
+  },
+  {
+    label: "主日崇拜",
+    items: [
+      { label: "崇拜時間", href: "/worship/timetable" },
+      { label: "崇拜週刊", href: "/worship/bulletin" },
+      { label: "詩歌敬拜", href: "/worship/songs" },
+      { label: "詩班獻詩", href: "/worship/choir" },
+      { label: "講道錄音", href: "/worship/sermons" },
+      { label: "行事曆", href: "/worship/calendar" },
+      { label: "惡劣天氣安排", href: "/worship/bad-weather" },
+    ],
+  },
+  {
+    label: "團契",
+    items: [
+      { label: "團契簡介", href: "/fellowship/introduction" },
+      { label: "團契職員", href: "/fellowship/pastors" },
+      { label: "聚會時間", href: "/fellowship/calendar" },
+    ],
+  },
+  {
+    label: "分享",
+    items: [
+      { label: "活動照片", href: "/sharing/photos" },
+      { label: "一口田", href: "/sharing/yat-hau-tin" },
+      { label: "詩歌見證分享會", href: "/sharing/sermons" },
+    ],
+  },
+  {
+    label: "五十週年紀念待刊",
+    href: "/50th-anniversary",
+  },
 ];
 
 export function Header() {
@@ -30,20 +73,49 @@ export function Header() {
           href="/"
           className="flex h-14 items-center space-x-2 font-bold text-xl"
         >
-          <Image src="/main-logo.png" alt="Logo" width={768} height={256} className="h-full w-auto object-contain" />
+          <Image
+            src="/main-logo.png"
+            alt="Logo"
+            width={768}
+            height={256}
+            className="h-full w-auto object-contain"
+          />
         </Link>
 
         {/* desktop header */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
-            {navItems.map((item) => (
-              <NavigationMenuItem key={item.href}>
-                {/* 用 asChild 代表將 Link 嘅功能套用落子元素，並且直接將樣式寫喺 Link 度 */}
-                <Link href={item.href} className={navigationMenuTriggerStyle()}>
-                  {item.label}
-                </Link>
-              </NavigationMenuItem>
-            ))}
+            {navItems.map((item, index) =>
+              item.items ? (
+                // items with dropdown
+                <NavigationMenuItem key={index}>
+                  <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="w-50">
+                      {item.items.map((subItem) => (
+                        <NavigationMenuLink
+                          key={subItem.href}
+                          href={subItem.href}
+                          title={subItem.label}
+                        >
+                          {subItem.label}
+                        </NavigationMenuLink>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ) : (
+                // items without dropdown
+                <NavigationMenuItem key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={navigationMenuTriggerStyle()}
+                  >
+                    {item.label}
+                  </Link>
+                </NavigationMenuItem>
+              ),
+            )}
           </NavigationMenuList>
         </NavigationMenu>
 
