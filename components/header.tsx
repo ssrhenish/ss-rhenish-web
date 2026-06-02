@@ -24,7 +24,7 @@ const navItems = [
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
-      <div className="container flex h-14 items-center justify-between px-4">
+      <div className="flex h-14 items-center justify-between px-4">
         {/* logo */}
         <Link
           href="/"
@@ -33,7 +33,7 @@ export function Header() {
           <Image src="/main-logo.png" alt="Logo" width={768} height={256} className="h-full w-auto object-contain" />
         </Link>
 
-        {/* desktop */}
+        {/* desktop header */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
             {navItems.map((item) => (
@@ -53,7 +53,7 @@ export function Header() {
           <Button>開始使用</Button>
         </div> */}
 
-        {/* mobile */}
+        {/* mobile header (hamburger) */}
         {/* <div className="flex md:hidden">
           <Sheet>
             <SheetTrigger asChild>
