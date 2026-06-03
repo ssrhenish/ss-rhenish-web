@@ -83,7 +83,7 @@ export function Header() {
         </Link>
 
         {/* desktop header */}
-        <NavigationMenu className="hidden md:flex">
+        <NavigationMenu className="hidden md:flex" viewport={false}>
           <NavigationMenuList>
             {navItems.map((item, index) =>
               item.items ? (

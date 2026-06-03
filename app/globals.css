@@ -123,6 +123,12 @@
   }
   body {
     @apply bg-background text-foreground;
+
+    /* 
+    * Prevents layout shift (temporary horizontal scrollbar flash) caused by Radix UI / shadcn/ui custom dropdowns
+    * (viewport={false}) calculation delays during initial render/hover state transitions.
+    */
+    overflow-x: hidden;
   }
   html {
     @apply font-sans;
