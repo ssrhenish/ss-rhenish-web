@@ -46,6 +46,8 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  --color-brand-orange: oklch(0.675 0.201 41.52);
 }
 
 :root {
@@ -123,6 +125,12 @@
   }
   body {
     @apply bg-background text-foreground;
+
+    /* 
+    * Prevents layout shift (temporary horizontal scrollbar flash) caused by Radix UI / shadcn/ui custom dropdowns
+    * (viewport={false}) calculation delays during initial render/hover state transitions.
+    */
+    overflow-x: hidden;
   }
   html {
     @apply font-sans;
