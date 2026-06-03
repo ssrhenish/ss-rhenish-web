@@ -97,6 +97,7 @@ export function Header() {
                           key={subItem.href}
                           href={subItem.href}
                           title={subItem.label}
+                          className="hover:text-brand-orange"
                         >
                           {subItem.label}
                         </NavigationMenuLink>
