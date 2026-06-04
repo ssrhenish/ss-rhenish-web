@@ -1,8 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import ListItem from "next/link";
-import { Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,7 +19,15 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { useState } from "react";
 
 // content for header navigation menu
 const navItems = [
@@ -65,6 +80,8 @@ const navItems = [
 ];
 
 export function Header() {
+  const [open, setOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="flex h-14 items-center justify-between px-4">
@@ -122,39 +139,79 @@ export function Header() {
 
         {/* 右側功能按鈕 (桌面版) */}
         {/* <div className="hidden md:flex items-center space-x-2">
-          <Button variant="ghost">登入</Button>
-          <Button>開始使用</Button>
+          <Button variant="ghost">Login</Button>
+          <Button>Sing up</Button>
         </div> */}
 
         {/* mobile header (hamburger) */}
-        {/* <div className="flex md:hidden">
-          <Sheet>
+        <div className="flex md:hidden">
+          <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden bg-(--color-brand-orange)"
+              >
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">切換選單</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-60 sm:w-75">
-              <nav className="flex flex-col space-y-4 mt-6">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="text-sm font-medium hover:underline"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-                <hr className="my-2" />
-                <Button variant="ghost" className="w-full justify-start">
-                  登入
-                </Button>
-                <Button className="w-full">開始使用</Button>
-              </nav>
+
+            <SheetContent side="right" className="w-75 pr-0">
+              <SheetHeader className="sr-only">
+                <SheetTitle>導航選單</SheetTitle>
+                <SheetDescription>
+                  這是本堂網站的手提電話版導航選單
+                </SheetDescription>
+              </SheetHeader>
+
+              <div className="h-full overflow-y-auto pr-6 py-6">
+                <nav className="flex flex-col gap-3">
+                  {navItems.map((item, index) => {
+                    // items without dropdown
+                    if (item.href) {
+                      return (
+                        <Link
+                          key={index}
+                          href={item.href}
+                          className="pl-5 text-base font-medium py-1.5 transition-colors hover:text-primary"
+                          onClick={() => setOpen(false)} // to close the sidebar when clicking a menu item
+                        >
+                          {item.label}
+                        </Link>
+                      );
+                    }
+
+                    // iuse Collapsible for mobile dropdown menu
+                    return (
+                      <Collapsible key={index} className="group">
+                        <CollapsibleTrigger className="pl-5 flex w-full items-center justify-between text-base font-medium py-1.5 transition-colors hover:text-primary [&[data-state=open]>svg]:rotate-180">
+                          {item.label}
+                          <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200 text-muted-foreground" />
+                        </CollapsibleTrigger>
+
+                        <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden">
+                          <div className="flex flex-col gap-2 pl-4 border-l ml-1.5 mt-1 border-muted">
+                            {item.items?.map((subItem, subIndex) => (
+                              <Link
+                                key={subIndex}
+                                href={subItem.href}
+                                className="text-sm text-muted-foreground py-1 transition-colors hover:text-primary"
+                                onClick={() => setOpen(false)} // to close the sidebar when clicking a menu item
+                              >
+                                {subItem.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </CollapsibleContent>
+                      </Collapsible>
+                    );
+                  })}
+                </nav>
+              </div>
             </SheetContent>
           </Sheet>
-        </div> */}
+        </div>
       </div>
     </header>
   );
