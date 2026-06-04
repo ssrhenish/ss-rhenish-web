@@ -91,7 +91,7 @@ export function Header() {
                 <NavigationMenuItem key={index}>
                   <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="w-50">
+                    <ul className="w-30">
                       {item.items.map((subItem) => (
                         <NavigationMenuLink
                           key={subItem.href}
