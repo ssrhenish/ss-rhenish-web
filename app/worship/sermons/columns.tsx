@@ -65,14 +65,14 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: "powerpoint",
     header: () => <div className="">投影片</div>,
     cell: ({ row }) => {
-      return <div className="" onClick={() => toast.info("Coming Soon!", { position: "top-center" })}>{ row.getValue("powerpoint") }</div>
+      return <div className="hover:underline cursor-pointer" onClick={() => toast.info("Coming Soon!", { position: "top-center" })}>{ row.getValue("powerpoint") }</div>
     },
   },
   {
     accessorKey: "mp3",
     header: () => <div className="">MP3</div>,
     cell: ({ row }) => {
-      return <div className="" onClick={() => toast.info("Coming Soon!", { position: "top-center" })}>{ row.getValue("mp3") }</div>
+      return <div className="hover:underline cursor-pointer" onClick={() => toast.info("Coming Soon!", { position: "top-center" })}>{ row.getValue("mp3") }</div>
     },
   },
   /*{
