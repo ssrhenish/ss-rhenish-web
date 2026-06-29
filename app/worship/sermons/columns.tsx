@@ -15,6 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { toast } from "sonner"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -63,10 +64,16 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "powerpoint",
     header: () => <div className="">投影片</div>,
+    cell: ({ row }) => {
+      return <div className="" onClick={() => toast.info("Coming Soon!", { position: "top-center" })}>{ row.getValue("powerpoint") }</div>
+    },
   },
   {
     accessorKey: "mp3",
     header: () => <div className="">MP3</div>,
+    cell: ({ row }) => {
+      return <div className="" onClick={() => toast.info("Coming Soon!", { position: "top-center" })}>{ row.getValue("mp3") }</div>
+    },
   },
   /*{
     id: "actions",
