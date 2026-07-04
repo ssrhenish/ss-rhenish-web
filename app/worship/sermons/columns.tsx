@@ -62,6 +62,10 @@ export const columns: ColumnDef<Payment>[] = [
     header: () => <div className="">經文</div>,
   },
   {
+    accessorKey: "topic",
+    header: () => <div className="">講題</div>,
+  },
+  {
     accessorKey: "powerpoint",
     header: () => <div className="">投影片</div>,
     cell: ({ row }) => {
