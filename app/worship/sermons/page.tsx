@@ -14,10 +14,10 @@ export default async function TimetablePage() {
   )
 }
 
-import { columns, Payment } from "./columns"
+import { columns, SermonDetails } from "./columns"
 import { DataTable } from "./data-table"
 
-async function getData(): Promise<Payment[]> {
+async function getData(): Promise<SermonDetails[]> {
   // Fetch data from your API here.
   return [
     {

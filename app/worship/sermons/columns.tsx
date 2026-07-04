@@ -2,11 +2,11 @@
 
 "use client"
 
-import { ColumnDef } from "@tanstack/react-table"
-import { MoreHorizontal } from "lucide-react"
-import { ArrowUpDown } from "lucide-react"
+import { ColumnDef, SortDirection } from "@tanstack/react-table"
+import { ArrowDown, ArrowUp, ArrowUpDown } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,9 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { toast } from "sonner"
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Payment = {
+export type SermonDetails = {
   date: string
   speaker: string
   type: "lunch" | "third" | "christmas"
@@ -29,17 +27,42 @@ export type Payment = {
   mp3: string | null
 }
 
-export const columns: ColumnDef<Payment>[] = [
+type ColumnSortState = false | SortDirection
+
+type SortIconProps = {
+  sorted: ColumnSortState
+}
+
+function SortIcon({ sorted }: SortIconProps) {
+  const className = cn(
+    "ml-2 h-4 w-4",
+    sorted ? "text-brand-orange" : "text-muted-foreground"
+  )
+
+  if (sorted === "asc") {
+    return <ArrowUp className={className} />
+  }
+
+  if (sorted === "desc") {
+    return <ArrowDown className={className} />
+  }
+
+  return <ArrowUpDown className={className} />
+}
+
+export const columns: ColumnDef<SermonDetails>[] = [
     {
     accessorKey: "date",
     header: ({ column }) => {
+      const sorted: ColumnSortState = column.getIsSorted()
+
       return (
         <Button
           variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          onClick={() => column.toggleSorting(sorted === "asc")}
         >
           主日
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <SortIcon sorted={sorted} />
         </Button>
       )
     },
