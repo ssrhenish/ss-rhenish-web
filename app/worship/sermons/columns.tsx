@@ -58,16 +58,16 @@ export const columns: ColumnDef<Payment>[] = [
     },*/
   },
   {
-    accessorKey: "verse",
-    header: () => <div className="">經文</div>,
-  },
-  {
     accessorKey: "topic",
     header: () => <div className="">講題</div>,
   },
   {
+    accessorKey: "verse",
+    header: () => <div className="">經文</div>,
+  },
+  {
     accessorKey: "powerpoint",
-    header: () => <div className="">投影片</div>,
+    header: () => <div className="">簡報 (PPT)</div>,
     cell: ({ row }) => {
       return row.getValue("powerpoint")
         ? <div className="text-brand-orange hover:underline cursor-pointer" onClick={() => toast.info("Coming Soon!", { position: "top-center" })}>{ row.getValue("powerpoint") }</div>
@@ -76,7 +76,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "mp3",
-    header: () => <div className="">MP3</div>,
+    header: () => <div className="">講道錄音 (MP3)</div>,
     cell: ({ row }) => {
       return row.getValue("mp3")
         ? <div className="text-brand-orange hover:underline cursor-pointer" onClick={() => toast.info("Coming Soon!", { position: "top-center" })}>{ row.getValue("mp3") }</div>
