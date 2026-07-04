@@ -80,7 +80,7 @@ async function getData(): Promise<Payment[]> {
       type: "lunch",
       topic: "幸福之家",
       verse: "詩篇84篇1-12節",
-      powerpoint: "N/A",
+      powerpoint: null,
       mp3: "250928",
     },
     {

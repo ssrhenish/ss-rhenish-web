@@ -66,7 +66,7 @@ export const columns: ColumnDef<Payment>[] = [
     header: () => <div className="">投影片</div>,
     cell: ({ row }) => {
       return row.getValue("powerpoint")
-        ? <div className="hover:underline cursor-pointer" onClick={() => toast.info("Coming Soon!", { position: "top-center" })}>{ row.getValue("powerpoint") }</div>
+        ? <div className="text-brand-orange hover:underline cursor-pointer" onClick={() => toast.info("Coming Soon!", { position: "top-center" })}>{ row.getValue("powerpoint") }</div>
         : <div className="">N/A</div>
     },
   },
@@ -75,7 +75,7 @@ export const columns: ColumnDef<Payment>[] = [
     header: () => <div className="">MP3</div>,
     cell: ({ row }) => {
       return row.getValue("mp3")
-        ? <div className="hover:underline cursor-pointer" onClick={() => toast.info("Coming Soon!", { position: "top-center" })}>{ row.getValue("mp3") }</div>
+        ? <div className="text-brand-orange hover:underline cursor-pointer" onClick={() => toast.info("Coming Soon!", { position: "top-center" })}>{ row.getValue("mp3") }</div>
         : <div className="">因應講員要求而未能提供錄音，請見諒！</div>
     },
   },
