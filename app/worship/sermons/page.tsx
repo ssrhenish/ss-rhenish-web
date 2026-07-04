@@ -26,8 +26,8 @@ async function getData(): Promise<Payment[]> {
       type: "lunch",
       topic: "事奉者的約",
       verse: "瑪拉基書2章1-9節",
-      powerpoint: "N/A",
-      mp3: "因應講員要求而未能提供錄音，請見諒！"
+      powerpoint: null,
+      mp3: null
     },
     {
       date: "2025-10-19",
@@ -53,8 +53,8 @@ async function getData(): Promise<Payment[]> {
       type: "third",
       topic: "刻在祢心底的名字",
       verse: "以斯拉記1章1-11節",
-      powerpoint: "N/A",
-      mp3: "因懇請講員提供錄音，請見諒！",
+      powerpoint: null,
+      mp3: null,
     },
     {
       date: "2025-10-05	",
