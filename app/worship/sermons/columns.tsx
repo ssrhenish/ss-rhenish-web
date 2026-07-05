@@ -67,13 +67,15 @@ export const columns: ColumnDef<SermonDetails>[] = [
         </Button>
       )
     },
+    meta: { className: "w-[12%]" }
   },
   {
     accessorKey: "speaker",
     header: ({ column }) => (
       <DataTableColumnFilter column={column} title="講員" />
     ),
-    filterFn: "arrIncludesSome", 
+    filterFn: "arrIncludesSome",
+    meta: { className: "w-[12%]" }
     /*cell: ({ row }) => {
       const amount = parseFloat(row.getValue("amount"))
       const formatted = new Intl.NumberFormat("en-US", {
@@ -87,14 +89,17 @@ export const columns: ColumnDef<SermonDetails>[] = [
   {
     accessorKey: "topic",
     header: () => <div className="">講題</div>,
+    //meta: { className: "w-[10%]" }
   },
   {
     accessorKey: "verse",
     header: () => <div className="">經文</div>,
+    //meta: { className: "w-[10%]" }
   },
   {
     accessorKey: "powerpoint",
     header: () => <div className="">簡報 (PPT)</div>,
+    meta: { className: "w-[12%]" },
     cell: ({ row }) => {
       return row.getValue("powerpoint")
         ? <div className="text-brand-orange hover:underline cursor-pointer" onClick={() => toast.info("Coming Soon!", { position: "top-center" })}>{ row.getValue("powerpoint") }</div>
@@ -104,6 +109,7 @@ export const columns: ColumnDef<SermonDetails>[] = [
   {
     accessorKey: "mp3",
     header: () => <div className="">講道錄音 (MP3)</div>,
+    //meta: { className: "w-[10%]" },
     cell: ({ row }) => {
       return row.getValue("mp3")
         ? <div className="text-brand-orange hover:underline cursor-pointer" onClick={() => toast.info("Coming Soon!", { position: "top-center" })}>{ row.getValue("mp3") }</div>

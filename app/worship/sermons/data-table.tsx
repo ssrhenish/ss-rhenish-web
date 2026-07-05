@@ -26,6 +26,8 @@ import {
 
 import { Input } from "@/components/ui/input"
 
+import { cn } from "@/lib/utils"
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
@@ -68,13 +70,14 @@ export function DataTable<TData, TValue>({
           className="max-w-sm"
         />
       </div>
-      <Table>
+      <Table className="w-full table-fixed">
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
+                const meta = header.column.columnDef.meta as { className?: string } | undefined
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className={cn(meta?.className, "")}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -94,11 +97,14 @@ export function DataTable<TData, TValue>({
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
               >
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
+                {row.getVisibleCells().map((cell) => {
+                  const meta = cell.column.columnDef.meta as { className?: string } | undefined
+                  return (
+                    <TableCell key={cell.id} className={cn(meta?.className, "")}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                    )
+                  })}
               </TableRow>
             ))
           ) : (
