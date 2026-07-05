@@ -67,7 +67,7 @@ export const columns: ColumnDef<SermonDetails>[] = [
         </Button>
       )
     },
-    meta: { className: "w-[12%]" }
+    meta: { className: "md:w-[12%]" }
   },
   {
     accessorKey: "speaker",

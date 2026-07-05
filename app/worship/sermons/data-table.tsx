@@ -60,7 +60,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="overflow-hidden rounded-md border">
-        <div className="flex items-center py-4">
+      {/* <div className="flex items-center py-4">
         <Input
           placeholder="Filter dates..."
           value={(table.getColumn("date")?.getFilterValue() as string) ?? ""}
@@ -69,8 +69,8 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
-      </div>
-      <Table className="w-full table-fixed">
+      </div> */}
+      <Table className="md:w-full md:table-fixed">
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
@@ -100,7 +100,7 @@ export function DataTable<TData, TValue>({
                 {row.getVisibleCells().map((cell) => {
                   const meta = cell.column.columnDef.meta as { className?: string } | undefined
                   return (
-                    <TableCell key={cell.id} className={cn(meta?.className, "")}>
+                    <TableCell key={cell.id} className={cn(meta?.className, "md:whitespace-normal md:break-words")}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                     )

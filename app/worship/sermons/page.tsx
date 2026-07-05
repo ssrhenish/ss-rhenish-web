@@ -5,10 +5,6 @@ export default async function TimetablePage() {
   return (
     <div className="container mx-auto py-10 px-4">
       <h1 className="text-3xl font-bold tracking-tight mb-4">講道錄音</h1>
-      {/* <p className="text-muted-foreground text-lg">
-        Coming Soon!
-      </p> */}
-
       <DataTable columns={columns} data={data} />
     </div>
   )
