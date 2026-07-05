@@ -4,6 +4,7 @@
 
 import { ColumnDef, SortDirection } from "@tanstack/react-table"
 import { ArrowDown, ArrowUp, ArrowUpDown } from "lucide-react"
+import { DataTableColumnFilter } from "@/components/DataTableColumnFilter"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -69,7 +70,10 @@ export const columns: ColumnDef<SermonDetails>[] = [
   },
   {
     accessorKey: "speaker",
-    header: () => <div className="">講員</div>,
+    header: ({ column }) => (
+      <DataTableColumnFilter column={column} title="講員" />
+    ),
+    filterFn: "arrIncludesSome", 
     /*cell: ({ row }) => {
       const amount = parseFloat(row.getValue("amount"))
       const formatted = new Intl.NumberFormat("en-US", {
@@ -105,33 +109,5 @@ export const columns: ColumnDef<SermonDetails>[] = [
         ? <div className="text-brand-orange hover:underline cursor-pointer" onClick={() => toast.info("Coming Soon!", { position: "top-center" })}>{ row.getValue("mp3") }</div>
         : <div className="">因應講員要求而未能提供錄音，請見諒！</div>
     },
-  },
-  /*{
-    id: "actions",
-    cell: ({ row }) => {
-      const payment = row.original
- 
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.date)}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      )
-    },
-  },*/
+  }
 ]
