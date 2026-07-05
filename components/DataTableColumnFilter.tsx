@@ -81,7 +81,8 @@ export function DataTableColumnFilter<TData, TValue>({
                     >
                       <Check className={cn("h-4 w-4 !text-white")} />
                     </div>
-                    <span>{option.label}</span>
+                    
+                    <span>{ title !== "崇拜堂次" ? option.label : (option.label === "lunch" ? "午堂" : "第三堂")}</span>
                   </CommandItem>
                 )
               })}

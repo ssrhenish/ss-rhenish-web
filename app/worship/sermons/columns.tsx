@@ -7,6 +7,7 @@ import { ArrowDown, ArrowUp, ArrowUpDown } from "lucide-react"
 import { DataTableColumnFilter } from "@/components/DataTableColumnFilter"
 
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import {
   DropdownMenu,
@@ -21,7 +22,7 @@ import { toast } from "sonner"
 export type SermonDetails = {
   date: string
   speaker: string
-  type: "lunch" | "third" | "christmas"
+  session: "lunch" | "third" | "christmas"
   topic: string
   verse: string
   powerpoint: string | null
@@ -68,6 +69,21 @@ export const columns: ColumnDef<SermonDetails>[] = [
       )
     },
     meta: { className: "md:w-[12%]" }
+  },
+  {
+    accessorKey: "session",
+    //header: () => <div className="">崇拜堂次</div>,
+    header: ({ column }) => (
+      <DataTableColumnFilter column={column} title="崇拜堂次" />
+    ),
+    meta: { className: "w-[10%]" },
+    cell: ({ row }) => {
+      switch (row.getValue("session")) {
+        case 'lunch': return <Badge className="w-15 bg-blue-50 text-blue-700 ">午堂</Badge>
+        case 'third': return <Badge className="w-15 bg-green-50 text-green-700">第三堂</Badge>
+        case 'christmas': return <Badge className="w-15 bg-red-50 text-red-700">聖誕崇拜</Badge>
+      }
+    },
   },
   {
     accessorKey: "speaker",
