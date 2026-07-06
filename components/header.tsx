@@ -84,11 +84,11 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
-      <div className="flex h-14 items-center justify-between px-4">
+      <div className="flex h-20 items-center justify-between px-4">
         {/* logo */}
         <Link
           href="/"
-          className="flex h-14 items-center space-x-2 font-bold text-xl"
+          className="flex h-20 items-center space-x-2 font-bold text-xl"
         >
           <Image
             src="/main-logo.png"
@@ -106,7 +106,7 @@ export function Header() {
               item.items ? (
                 // items with dropdown
                 <NavigationMenuItem key={index}>
-                  <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
+                  <NavigationMenuTrigger className="h-19 cursor-pointer">{item.label}</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="w-30">
                       {item.items.map((subItem) => (
