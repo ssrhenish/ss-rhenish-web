@@ -136,3 +136,13 @@
     @apply font-sans;
   }
 }
+
+.container {
+  width: 100%;
+  margin-inline: auto;
+  
+  /* for screens wider than 96rem, set max-width to 1600px */
+  @media (width >= 96rem) {
+    max-width: 1600px;
+  }
+}
