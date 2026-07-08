@@ -2,10 +2,10 @@ import Image from "next/image";
 import PhotoCard from "@/components/PhotoCard";
 
 const galleryItems = [
-  { id: 1, src: '/images/風獅.png', alt: '相片 1', url: '/page-1', title: '東京街頭', desc: '日本旅遊回憶' },
-  { id: 2, src: '/images/風獅.png', alt: '相片 2', url: '/page-2', title: '維港夜景', desc: '香港璀璨之夜' },
-  { id: 3, src: '/images/風獅.png', alt: '相片 3', url: '/page-3', title: '阿爾卑斯山', desc: '瑞士雪景遠足' },
-  { id: 4, src: '/images/風獅.png', alt: '相片 4', url: '/page-4', title: '悉尼歌劇院', desc: '澳洲跨年倒數' },
+  { id: 1, src: '/images/homepage/inside.jpg', alt: '相片 1', url: '/page-1', title: '東京街頭', desc: '日本旅遊回憶' },
+  { id: 2, src: '/images/homepage/activity.jpg', alt: '相片 2', url: '/page-2', title: '維港夜景', desc: '香港璀璨之夜' },
+  { id: 3, src: '/images/homepage/inside.jpg', alt: '相片 3', url: '/page-3', title: '阿爾卑斯山', desc: '瑞士雪景遠足' },
+  { id: 4, src: '/images/homepage/activity.jpg', alt: '相片 4', url: '/page-4', title: '悉尼歌劇院', desc: '澳洲跨年倒數' },
 ];
 
 export default function Home() {
