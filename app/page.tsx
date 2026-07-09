@@ -26,7 +26,7 @@ export default function Home() {
         </div>
 
         {/* 2 欄 / 1 欄 網格排版 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-18 pt-30 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-18 pt-40 max-w-6xl w-full">
           {galleryItems.map((item, index) => (
             <PhotoCard
               key={item.id}

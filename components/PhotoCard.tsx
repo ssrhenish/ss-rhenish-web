@@ -16,10 +16,10 @@ export default function PhotoCard({ src, alt, url, title, description, priority 
   return (
     <Link 
       href={url}
-      className="block group relative overflow-hidden rounded-xl shadow-md transition-all duration-300 hover:shadow-2xl"
+      className="block group relative overflow-hidden rounded-xl shadow-md transition-all duration-300 hover:shadow-2xl hover:shadow-black/50 hover:scale-105"
     >
       {/* 圖片容器：16:9 比例 */}
-      <div className="relative w-100 h-100">
+      <div className="relative w-full h-100">
         <Image
           src={src}
           alt={alt}
@@ -29,13 +29,16 @@ export default function PhotoCard({ src, alt, url, title, description, priority 
           priority={priority}
         />
         
+        <h3 className="absolute inset-0 flex items-center justify-center z-10 text-white text-6xl text-center font-bold tracking-wide transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">{title}</h3>
+        
         {/* 黑色漸變遮罩：滑鼠 hover 時先會顯現 (opacity-100) */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-6" >
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-6" >
           
+          {/* <h3 className="text-white text-6xl text-center font-bold tracking-wide opacity-100">{title}</h3> */}
           {/* 文字動畫：hover 時由下而上稍微升起 */}
           <div className="transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0 text-white">
-            <h3 className="text-xl font-bold tracking-wide">{title}</h3>
-            {description && <p className="text-sm text-gray-200 mt-1">{description}</p>}
+            {/* <h3 className="text-xl font-bold tracking-wide">{title}</h3> */}
+            {description && <p className="text-xl text-gray-200 mt-1">{description}</p>}
           </div>
 
         </div>
