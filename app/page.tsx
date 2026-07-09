@@ -12,7 +12,7 @@ const galleryItems = [
 
 export default function Home() {
   return (
-    <div className="flex-col flex-1 items-center justify-center font-sans dark:bg-black">
+    <div className="container flex-col flex-1 items-center justify-center font-sans dark:bg-black">
       <main className="flex flex-1 w-full flex-col items-center justify-between py-16 bg-white dark:bg-black">
         <div className="text-center">
           <h2 className="text-4xl font-bold">中華基督教禮賢會上水堂</h2>
@@ -26,7 +26,7 @@ export default function Home() {
         </div>
 
         {/* 2 欄 / 1 欄 網格排版 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-18 pt-30 w-full">
           {galleryItems.map((item, index) => (
             <PhotoCard
               key={item.id}
