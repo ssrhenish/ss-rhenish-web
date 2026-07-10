@@ -76,6 +76,7 @@ export const columns: ColumnDef<SermonDetails>[] = [
     header: ({ column }) => (
       <DataTableColumnFilter column={column} title="崇拜堂次" />
     ),
+    filterFn: "arrIncludesSome",
     meta: { className: "w-[10%]" },
     cell: ({ row }) => {
       switch (row.getValue("session")) {
