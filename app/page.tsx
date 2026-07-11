@@ -16,17 +16,30 @@ export default function Home() {
       <main className="flex flex-1 w-full flex-col items-center justify-between py-16 bg-white dark:bg-black">
         <div className="text-center">
           <h2 className="text-4xl font-bold">中華基督教禮賢會上水堂</h2>
-          <h2 className="text-3xl pt-4">The Chinese Rhenish Church Sheung Shui</h2>
-        </div>
-        <div className="pt-30 text-center font-bold">
-          <h2 className="text-3xl">2026年教會主題：</h2>
-          <h1 className="text-6xl pt-10">更新・豐盛</h1>
-          <h3 className="text-2xl pt-10">主題金句：「(耶穌)我來了，是要叫人得生命，並且得的更豐盛。」</h3>
-          <h3 className="text-2xl pt-4">(約翰福音10章10節下)</h3>
+          <h2 className="text-3xl pt-4 font-light">The Chinese Rhenish Church Sheung Shui</h2>
         </div>
 
-        {/* 2 欄 / 1 欄 網格排版 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-18 pt-40 max-w-6xl w-full">
+        {/* window that shows background image */}
+        <div className="text-center font-bold text-white">
+          <div className="relative w-screen h-120 my-20 overflow-hidden border border-white/10">
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-fixed opacity-20"
+              style={{ 
+                backgroundImage: "url('/images/homepage/frontdoor.jpg')",
+                clipPath: "inset(0 0 0 0)" 
+              }}
+            />
+            <div className="absolute inset-0 flex flex-col justify-center bg-linear-to-t from-black/80 via-black/40 to-transparent">
+              <h2 className="text-3xl">2026年教會主題：</h2>
+              <h1 className="text-6xl pt-10">更新・豐盛</h1>
+              <h3 className="text-2xl pt-10">主題金句：「(耶穌)我來了，是要叫人得生命，並且得的更豐盛。」</h3>
+              <h3 className="text-2xl pt-4">(約翰福音10章10節下)</h3>
+            </div>
+          </div>
+        </div>
+
+        {/* grid layout that displays photo cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-18 pt-10 max-w-6xl w-full">
           {galleryItems.map((item, index) => (
             <PhotoCard
               key={item.id}
@@ -35,7 +48,7 @@ export default function Home() {
               url={item.url}
               title={item.title}
               description={item.desc}
-              priority={index < 2} // 前兩張相自動優化載入速度
+              priority={index < 2} // set priority for the first two images
             />
           ))}
         </div>
