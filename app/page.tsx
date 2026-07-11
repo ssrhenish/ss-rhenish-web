@@ -98,7 +98,20 @@ export default function Home() {
               </a>
             </p>
           </div>
-          <div>google map</div>
+          {/* google map */}
+          <div className="relative w-full rounded-2xl shadow-2xl bg-slate-900">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14743.80550054933!2d114.11782683559474!3d22.506007473988433!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3403f60e18384ef1%3A0x4c7e35033decb146!2z5Lit6I-v5Z-6552j5pWZ56au6LOi5pyD5LiK5rC05aCC!5e0!3m2!1szh-TW!2shk!4v1783782592817!5m2!1szh-TW!2shk"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy" // 延遲載入，優化 Next.js 效能
+              referrerPolicy="no-referrer-when-downgrade"
+              title="中華基督教禮賢會上水堂地圖"
+              className="inset-0 w-full h-full rounded-2xl"
+            />
+          </div>
         </div>
       </main>
     </div>
