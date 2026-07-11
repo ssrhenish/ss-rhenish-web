@@ -1,6 +1,9 @@
 import Image from "next/image";
 import PhotoCard from "@/components/PhotoCard";
 
+import { MapPin, Phone, Mail } from "lucide-react"
+import { Separator } from "@/components/ui/separator";
+
 const galleryItems = [
   { id: 1, src: '/images/homepage/inside.jpg', alt: '相片 1', url: '/worship/timetable', title: '崇拜時間', desc: '瀏覽崇拜、兒童崇拜、聖餐、祈禱會等聚會時間。' },
   { id: 2, src: '/images/homepage/activity.jpg', alt: '相片 2', url: '/sharing/photos', title: '活動照片', desc: '查看教會活動照片。' },
@@ -51,6 +54,51 @@ export default function Home() {
               priority={index < 2} // set priority for the first two images
             />
           ))}
+        </div>
+
+        {/* grid layout for contact information */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-18 pt-40 max-w-6xl w-full text-2xl">
+          <div>
+            <h2 className="text-5xl font-bold">聯絡我們</h2>
+            <p className="pt-10 leading-10">
+              <MapPin className="inline-block w-6 h-6 mr-2 mb-2" />
+              <br />
+              堂址：新界上水新成路廿五號
+              <br />
+              辦事處：新界上水新成路六號二樓
+            </p>
+            <Separator className="my-4" />
+            <p className="leading-10">
+              <Phone className="inline-block w-6 h-6 mr-2 mb-2" />
+              <br />
+              電話：(852) 2670 5364
+              <br />
+              傳真：(852) 2670 5346
+            </p>
+            <Separator className="my-4" />
+            <p className="leading-10">
+              <Image src="/images/homepage/facebook.svg" alt="Facebook Icon" width={24} height={24} className="inline-block mr-2 mb-2" />
+              <br />
+              教會 FB專頁 ：
+              <br />
+              <a href="https://www.facebook.com/ssrhenish" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                https://www.facebook.com/ssrhenish
+              </a>
+            </p>
+            <Separator className="my-4" />
+            <p className="leading-10">
+              <Mail className="inline-block w-6 h-6 mr-2 mb-2" />
+              <br />
+              電郵：
+              <br />
+              <a href="mailto:info@ssrhenish.org" 
+                className="text-blue-500 hover:underline"
+              >
+                info@ssrhenish.org
+              </a>
+            </p>
+          </div>
+          <div>google map</div>
         </div>
       </main>
     </div>
