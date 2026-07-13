@@ -9,14 +9,6 @@ import { DataTableColumnFilter } from "@/components/DataTableColumnFilter"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { toast } from "sonner"
 
 export type SermonDetails = {
@@ -72,7 +64,6 @@ export const columns: ColumnDef<SermonDetails>[] = [
   },
   {
     accessorKey: "session",
-    //header: () => <div className="">崇拜堂次</div>,
     header: ({ column }) => (
       <DataTableColumnFilter column={column} title="崇拜堂次" />
     ),
@@ -93,25 +84,14 @@ export const columns: ColumnDef<SermonDetails>[] = [
     ),
     filterFn: "arrIncludesSome",
     meta: { className: "w-[12%]" }
-    /*cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"))
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount)
-
-      return <div className="text-right font-medium">{formatted}</div>
-    },*/
   },
   {
     accessorKey: "topic",
-    header: () => <div className="">講題</div>,
-    //meta: { className: "w-[10%]" }
+    header: () => <div className="">講題</div>
   },
   {
     accessorKey: "verse",
-    header: () => <div className="">經文</div>,
-    //meta: { className: "w-[10%]" }
+    header: () => <div className="">經文</div>
   },
   {
     accessorKey: "powerpoint",
