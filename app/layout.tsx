@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 
 import { Header } from "@/components/header";
 import { Toaster } from "@/components/ui/sonner";
+import { Footer } from "@/components/Footer";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -37,7 +38,8 @@ export default function RootLayout({
         <Header />
         {children}
         <Toaster />
-        </body>
+        <Footer />
+      </body>
     </html>
   );
 }
