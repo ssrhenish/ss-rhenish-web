@@ -8,8 +8,9 @@ interface Issue {
   title: string;
   date: string;
   category: string;
-  content: string;
-  image?: string; // 1. Added optional image field
+  driveUrl: string; // Add this property
+  content?: string; // Change to optional since you are using Google Drive links
+  image?: string;
 }
 
 interface NewsletterInteractiveProps {
@@ -19,7 +20,9 @@ interface NewsletterInteractiveProps {
 export default function NewsletterInteractive({ issues }: NewsletterInteractiveProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("全部");
   const [activeModalIssue, setActiveModalIssue] = useState<Issue | null>(null);
-  const [isSubmitModalOpen, setIsSubmitModalOpen] = useState<boolean>(false);
+
+  // Google Form URL retrieved from the first dataset
+  const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd9y6tUdRH_DZXQjvso6eShnio-BXKSwQz4AzFrsTWUBpUItw/viewform";
 
   const categories = [
     { title: "牧者隨筆", icon: "✍️", desc: "牧者的心聲分享、靈修領受與教會牧養反思。" },
@@ -101,13 +104,11 @@ export default function NewsletterInteractive({ issues }: NewsletterInteractiveP
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredIssues.map((issue) => (
               <article key={issue.id} className="bg-slate-50 border border-slate-200 rounded-lg overflow-hidden flex flex-col shadow-sm">
-                {/* 2. Dynamic Image source with fallback handling */}
                 <img 
                   src={issue.image || "/images/yht/yht-001.png"} 
                   alt={issue.title} 
                   className="w-full h-44 object-cover"
                   onError={(e) => {
-                    // Fallback to a default image if file path is missing or fails to load
                     (e.target as HTMLImageElement).src = "https://via.placeholder.com/400x200?text=No+Image";
                   }}
                 />
@@ -115,27 +116,32 @@ export default function NewsletterInteractive({ issues }: NewsletterInteractiveP
                   <span className="text-xs font-semibold text-blue-600 mb-1">{issue.category}</span>
                   <h3 className="text-lg font-bold text-slate-900 mb-2">一口田 Vol. {issue.vol} - {issue.title}</h3>
                   <p className="text-xs text-slate-400 mb-4">發布日期：{issue.date}</p>
-                  <button
-                    onClick={() => setActiveModalIssue(issue)}
-                    className="mt-auto text-left text-blue-600 hover:text-blue-800 font-semibold text-sm cursor-pointer"
+                  
+                  <a
+                    href={issue.driveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto text-left text-blue-600 hover:text-blue-800 font-semibold text-sm inline-flex items-center gap-1"
                   >
-                    閱讀全文 &rarr;
-                  </button>
+                    閱讀全文 (PDF) &rarr;
+                  </a>
                 </div>
               </article>
             ))}
           </div>
 
-          {/* Submission Call-To-Action */}
+          {/* Submission Call-To-Action (Updated to anchor tag pointing to Google Form) */}
           <div className="bg-blue-50 border border-blue-100 rounded-2xl p-8 text-center mt-16 max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold text-blue-900 mb-2">歡迎投稿</h3>
             <p className="text-slate-600 mb-6">誠邀弟兄姊妹文字事奉，分享神在你生命中的作為與恩典。</p>
-            <button
-              onClick={() => setIsSubmitModalOpen(true)}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-full transition-colors cursor-pointer"
+            <a
+              href={GOOGLE_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-full transition-colors cursor-pointer"
             >
-              立即投稿 / 查看詳情
-            </button>
+              前往 Google 表單投稿 &rarr;
+            </a>
           </div>
         </div>
       </section>
@@ -159,47 +165,6 @@ export default function NewsletterInteractive({ issues }: NewsletterInteractiveP
             >
               關閉
             </button>
-          </div>
-        </div>
-      )}
-
-      {/* Submission Modal */}
-      {isSubmitModalOpen && (
-        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-xl max-w-md w-full p-6 shadow-2xl relative">
-            <h3 className="text-xl font-bold text-slate-900 mb-4">投稿表格</h3>
-            <form 
-              onSubmit={(e) => { 
-                e.preventDefault(); 
-                alert("已成功提交！"); 
-                setIsSubmitModalOpen(false); 
-              }} 
-              className="space-y-4"
-            >
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1">姓名 / 筆名</label>
-                <input type="text" required className="w-full border border-slate-300 rounded p-2 text-sm" />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1">文章標題</label>
-                <input type="text" required className="w-full border border-slate-300 rounded p-2 text-sm" />
-              </div>
-              <div className="flex justify-end gap-2 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setIsSubmitModalOpen(false)}
-                  className="px-4 py-2 text-sm text-slate-600 hover:bg-slate-100 rounded cursor-pointer"
-                >
-                  取消
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 cursor-pointer"
-                >
-                  提交
-                </button>
-              </div>
-            </form>
           </div>
         </div>
       )}

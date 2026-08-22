@@ -15,7 +15,7 @@ const ISSUES_DATA = [
     title: "信仰的起點",
     date: "2024年1月",
     category: "牧者隨筆",
-    content: "內文...",
+    driveUrl: "https://drive.google.com/file/d/18GRaUZCd7HnAGtLL64ULXgX8EayF8xBi/view?usp=drive_link",
     image: "/images/yht/yht-001.png"
   },
   {
@@ -24,7 +24,7 @@ const ISSUES_DATA = [
     title: "感恩的心",
     date: "2024年2月",
     category: "會友園地",
-    content: "這是第 002 期家訊的完整內文...",
+    driveUrl: "https://drive.google.com/file/d/1vT1skvgFE-K3DlUgzGT5DBlrHSBehXYj/view?usp=drive_link",
     image: "/images/yht/yht-002.png"
   },
   {
@@ -33,7 +33,7 @@ const ISSUES_DATA = [
     title: "主內平安",
     date: "2024年3月",
     category: "小徑靈光",
-    content: "這是第 003 期家訊的完整內文...",
+    driveUrl: "https://drive.google.com/file/d/1wwiR0nU0YN-PdoJJfvRzjCyrYjHVuKGb/view?usp=drive_link",
     image: "/images/yht/yht-003.png"
   },
   {
@@ -42,7 +42,7 @@ const ISSUES_DATA = [
     title: "靈修筆記",
     date: "2024年4月",
     category: "靈命札記",
-    content: "這是第 004 期家訊的完整內文...",
+    driveUrl: "https://drive.google.com/file/d/1MwVPiLtfhHbvRdRqqGAWn6uUrhn1nfD4/view?usp=drive_link",
     image: "/images/yht/yht-004.png"
   },
   {
@@ -51,7 +51,7 @@ const ISSUES_DATA = [
     title: "同行成長",
     date: "2024年5月",
     category: "會友園地",
-    content: "這是第 005 期家訊的完整內文...",
+    driveUrl: "https://drive.google.com/file/d/1RjAya06GKAwG3VIVOuRM32LjToxKcYUf/view?usp=drive_link",
     image: "/images/yht/yht-005.png"
   },
   {
@@ -60,7 +60,7 @@ const ISSUES_DATA = [
     title: "主愛永恆",
     date: "2024年6月",
     category: "牧者隨筆",
-    content: "這是第 006 期家訊的完整內文...",
+    driveUrl: "https://drive.google.com/file/d/1Ni01WGWUqgcjcoVorKyRnIXibVb2o5qB/view?usp=drive_link",
     image: "/images/yht/yht-006.png"
   },
 ];
