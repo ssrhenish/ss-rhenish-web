@@ -1,5 +1,3 @@
-// this file contains the <DataTable /> component
-
 "use client"
 
 import * as React from "react"
@@ -24,8 +22,6 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import { Input } from "@/components/ui/input"
-
 import { cn } from "@/lib/utils"
 
 interface DataTableProps<TData, TValue> {
@@ -38,10 +34,8 @@ export function DataTable<TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
 
-    const [sorting, setSorting] = React.useState<SortingState>([])
-    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  )
+  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
 
   const table = useReactTable({
     data,
@@ -59,25 +53,15 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div className="overflow-hidden rounded-md border">
-      {/* <div className="flex items-center py-4">
-        <Input
-          placeholder="Filter dates..."
-          value={(table.getColumn("date")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("date")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-      </div> */}
+    <div className="overflow-hidden rounded-md border bg-white shadow-sm">
       <Table className="md:w-full md:table-fixed">
-        <TableHeader>
+        <TableHeader className="bg-slate-50">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 const meta = header.column.columnDef.meta as { className?: string } | undefined
                 return (
-                  <TableHead key={header.id} className={cn(meta?.className, "")}>
+                  <TableHead key={header.id} className={cn(meta?.className, "font-semibold")}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -96,21 +80,22 @@ export function DataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
+                className="hover:bg-slate-50/80 transition-colors"
               >
                 {row.getVisibleCells().map((cell) => {
                   const meta = cell.column.columnDef.meta as { className?: string } | undefined
                   return (
-                    <TableCell key={cell.id} className={cn(meta?.className, "md:whitespace-normal md:break-words")}>
+                    <TableCell key={cell.id} className={cn(meta?.className, "md:whitespace-normal md:break-words text-sm")}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
-                    )
-                  })}
+                  )
+                })}
               </TableRow>
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+              <TableCell colSpan={columns.length} className="h-24 text-center text-muted-foreground">
+                沒有找到相關記錄。
               </TableCell>
             </TableRow>
           )}

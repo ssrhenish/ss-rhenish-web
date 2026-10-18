@@ -6,8 +6,9 @@ import { cn } from "@/lib/utils";
 import { Header } from "@/components/header";
 import { Toaster } from "@/components/ui/sonner";
 import { Footer } from "@/components/Footer";
+import { AuthProvider } from "@/context/AuthContext";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,10 +36,13 @@ export default function RootLayout({
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
       <body className="min-h-full flex flex-col">
-        <Header />
-        {children}
-        <Toaster />
-        <Footer />
+        {/* Wrap everything using useAuth inside AuthProvider */}
+        <AuthProvider>
+          <Header />
+          {children}
+          <Toaster />
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
