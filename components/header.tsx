@@ -66,7 +66,7 @@ const navItems = [
     items: [
       { label: "活動照片", href: "/sharing/photos" },
       { label: "一口田", href: "/sharing/yat-hau-tin" },
-      { label: "詩歌見證分享會", href: "/sharing/sermons" },
+      { label: "詩歌見證分享會", href: "/sharing/song-sharing" },
     ],
   },
   { label: "五十週年紀念待刊", href: "/50th-anniversary" },
