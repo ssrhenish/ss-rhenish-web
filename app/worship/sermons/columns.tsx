@@ -8,6 +8,7 @@ import { useAuth } from "@/context/AuthContext"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
+import { toast } from "sonner"
 
 export type SermonDetails = {
   date: string
@@ -122,11 +123,11 @@ export const getColumns = (): ColumnDef<SermonDetails>[] => [
   },
   {
     accessorKey: "topic",
-    header: () => <div>講題</div>,
+    header: () => <div className="">講題</div>
   },
   {
     accessorKey: "verse",
-    header: () => <div>經文</div>,
+    header: () => <div className="">經文</div>
   },
   {
     accessorKey: "powerpoint",
