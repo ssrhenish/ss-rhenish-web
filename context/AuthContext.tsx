@@ -10,7 +10,7 @@ import { Lock } from "lucide-react"
 interface AuthContextType {
   isUnlocked: boolean
   openAuthModal: (fileInfo?: { name: string; type: string }) => void
-  handleAssetAccess: (fileInfo: { name: string; type: string }) => void
+  handleAssetAccess: (fileInfo: { name: string; type: string; downloadUrl: string | null }) => void
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -35,9 +35,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setModalOpen(true)
   }
 
-  const handleAssetAccess = (fileInfo: { name: string; type: string }) => {
-    if (isUnlocked) {
-      window.open(`/downloads/${fileInfo.type === "簡報 (PPT)" ? "ppt" : "mp3"}/${fileInfo.name}`, '_blank')
+  const handleAssetAccess = (fileInfo: { name: string; type: string; downloadUrl: string | null }) => {
+    if (isUnlocked && fileInfo.downloadUrl) {
+      if (fileInfo.downloadUrl) {
+        // trigger download by creating a temporary anchor element
+        const link = document.createElement('a');
+        link.href = fileInfo.downloadUrl;
+        link.download = fileInfo.name || 'download_file';
+        document.body.appendChild(link);
+        link.click();
+        
+        // remove the link after triggering download
+        document.body.removeChild(link);
+      }
     } else {
       openAuthModal(fileInfo)
     }

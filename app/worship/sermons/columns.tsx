@@ -46,24 +46,28 @@ function SortIcon({ sorted }: SortIconProps) {
 // Helper Cell component using global Auth Context
 function ProtectedAssetCell({ 
   value, 
-  type
+  type,
+  downloadUrl
 }: { 
   value: string | null
   type: "ppt" | "mp3"
+  downloadUrl: string | null
 }) {
   const { isUnlocked, handleAssetAccess } = useAuth()
 
   if (!value) {
-    if (type === "mp3") {
-      return <span className="text-xs text-muted-foreground">因應講員要求未能提供</span>
-    }
-    return <span className="text-muted-foreground">N/A</span>
+    // if (type === "mp3") {
+    //   return <span className="text-xs text-muted-foreground">因應講員要求未能提供</span>
+    // }
+    // return <span className="text-muted-foreground">N/A</span>
+    return <span className="text-xs text-muted-foreground">因應講員要求未能提供</span>
   }
 
   const handleAccess = () => {
     handleAssetAccess({ 
       name: value, 
-      type: type === "ppt" ? "簡報 (PPT)" : "錄音 (MP3)" 
+      type: type === "ppt" ? "簡報 (PPT)" : "錄音 (MP3)",
+      downloadUrl: downloadUrl
     })
   }
 
@@ -95,7 +99,14 @@ export const getColumns = (): ColumnDef<SermonDetails>[] => [
         </Button>
       )
     },
-    meta: { className: "md:w-[12%]" }
+    meta: { className: "md:w-[12%]" },
+    cell: ({ row }) => {
+      return new Date(row.getValue("date")).toLocaleDateString('zh-HK', {
+        year: 'numeric',
+        month: 'long', // 揀 'long' 或者 'numeric' 都會出 "10月"
+        day: 'numeric'
+      });
+    }
   },
   {
     accessorKey: "session",
@@ -135,8 +146,9 @@ export const getColumns = (): ColumnDef<SermonDetails>[] => [
     meta: { className: "w-[12%]" },
     cell: ({ row }) => (
       <ProtectedAssetCell 
-        value={row.getValue("powerpoint")} 
+        value={row.getValue("powerpoint") ? "按此下載" : null } 
         type="ppt" 
+        downloadUrl={row.getValue("powerpoint")}
       />
     ),
   },
@@ -146,8 +158,9 @@ export const getColumns = (): ColumnDef<SermonDetails>[] => [
     meta: { className: "w-[16%]" },
     cell: ({ row }) => (
       <ProtectedAssetCell 
-        value={row.getValue("mp3")} 
+        value={row.getValue("mp3") ? "按此下載" : null } 
         type="mp3" 
+        downloadUrl={row.getValue("mp3")} 
       />
     ),
   }

@@ -1,13 +1,15 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { getColumns } from "./columns"
 import { DataTable } from "./data-table"
 import { Button } from "@/components/ui/button"
 import { Video, ExternalLink } from "lucide-react"
 import { SermonDetails } from "./columns"
 
-const SAMPLE_DATA: SermonDetails[] = [
+
+// sample data for testing 
+/*const SAMPLE_DATA: SermonDetails[] = [
   {
     date: "2025-10-26",
     speaker: "黃天相博士",
@@ -98,15 +100,33 @@ const SAMPLE_DATA: SermonDetails[] = [
     powerpoint: "250914_3rd",
     mp3: "250914_3rd",
   }
-]
+]*/
 
 export default function TimetablePage() {
+  
   const columns = getColumns()
+
+  const [sermonData, setSermonData] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchSermonData = async () => {
+      try {
+        const res = await fetch('/api/sharepoint/sermons');
+        const result = await res.json();
+        setSermonData(result.data);
+        //console.log('SharePoint API Response:', result);
+      } catch (error) {
+        console.error('API Error:', error);
+      }
+    };
+
+    fetchSermonData();
+  }, []);
 
   return (
     <div className="container mx-auto py-10 px-4 space-y-6">
       
-      {/* 1. FACEBOOK LIVE STREAMING PROMO BANNER */}
+      {/* FACEBOOK LIVE STREAMING PROMO BANNER */}
       <div className="rounded-xl border border-blue-200 bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 p-6 text-white shadow-md">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
@@ -138,7 +158,7 @@ export default function TimetablePage() {
         </div>
       </div>
 
-      {/* 2. HEADER TITLE */}
+      {/* HEADER TITLE */}
       <div className="pt-2">
         <h1 className="text-3xl font-bold tracking-tight">講道錄音與簡報</h1>
         <p className="text-sm text-muted-foreground mt-1">
@@ -146,8 +166,9 @@ export default function TimetablePage() {
         </p>
       </div>
 
-      {/* 3. DATA TABLE */}
-      <DataTable columns={columns} data={SAMPLE_DATA} />
+      {/* DATA TABLE */}
+      {/* <DataTable columns={columns} data={SAMPLE_DATA} /> */}
+      <DataTable columns={columns} data={sermonData} />
 
     </div>
   )
