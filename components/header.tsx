@@ -84,16 +84,16 @@ export function Header() {
         <div className="flex items-center gap-3 shrink-0">
           <Link href="/" className="flex h-14 items-center">
             <Image
-              src="/main-logo.png"
+              src="/images/header/main-logo.jpeg"
               alt="Logo"
               width={768}
               height={256}
               className="h-full w-auto object-contain"
             />
           </Link>
-          <div className="font-bold text-xl tracking-tight hidden xl:block text-slate-900">
+          {/* <div className="font-bold text-xl tracking-tight hidden xl:block text-slate-900">
             中華基督教禮賢會上水堂
-          </div>
+          </div> */}
         </div>
 
         {/* Desktop Header Nav + Top Right Unlock Button */}

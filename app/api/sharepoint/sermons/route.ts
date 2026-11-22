@@ -64,6 +64,7 @@ export async function GET() {
             verse: fields.Verse,
             powerpoint: fields.MediaType === 'PPT' ? item["@microsoft.graph.downloadUrl"] : null,
             mp3: fields.MediaType === 'MP3' ? item["@microsoft.graph.downloadUrl"] : null,
+            mp4: fields.MediaType === 'MP4' ? item["@microsoft.graph.downloadUrl"] : null
           };
 
           result.push(sermon);
@@ -86,16 +87,20 @@ export async function GET() {
           session: currentFile.session,
           verse: currentFile.verse,
           powerpoint: null,
-          mp3: null
+          mp3: null,
+          mp4: null
         };
       }
 
       // if the current file is a PPT, set the powerpoint field
       // if it's an MP3, set the mp3 field
+      // if it's an MP4, set the mp4 field
       if (currentFile.powerpoint) {
         accumulator[key].powerpoint = currentFile.powerpoint;
       } else if (currentFile.mp3) {
         accumulator[key].mp3 = currentFile.mp3;
+      } else if (currentFile.mp4) {
+        accumulator[key].mp4 = currentFile.mp4;
       }
       
       return accumulator;

@@ -18,6 +18,7 @@ export type SermonDetails = {
   verse: string
   powerpoint: string | null
   mp3: string | null
+  mp4: string | null
 }
 
 type ColumnSortState = false | SortDirection
@@ -50,7 +51,7 @@ function ProtectedAssetCell({
   downloadUrl
 }: { 
   value: string | null
-  type: "ppt" | "mp3"
+  type: "ppt" | "mp3" | "mp4"
   downloadUrl: string | null
 }) {
   const { isUnlocked, handleAssetAccess } = useAuth()
@@ -65,8 +66,8 @@ function ProtectedAssetCell({
 
   const handleAccess = () => {
     handleAssetAccess({ 
-      name: value, 
-      type: type === "ppt" ? "簡報 (PPT)" : "錄音 (MP3)",
+      name: value,
+      type: type === "ppt" ? "簡報 (PPT)" : (type === "mp3" ? "錄音 (MP3)" : "視頻 (MP4)"),
       downloadUrl: downloadUrl
     })
   }
@@ -161,6 +162,18 @@ export const getColumns = (): ColumnDef<SermonDetails>[] => [
         value={row.getValue("mp3") ? "按此下載" : null } 
         type="mp3" 
         downloadUrl={row.getValue("mp3")} 
+      />
+    ),
+  },
+  {
+    accessorKey: "mp4",
+    header: () => <div>講道視頻 (MP4)</div>,
+    meta: { className: "w-[16%]" },
+    cell: ({ row }) => (
+      <ProtectedAssetCell 
+        value={row.getValue("mp4") ? "按此下載" : null } 
+        type="mp4" 
+        downloadUrl={row.getValue("mp4")} 
       />
     ),
   }
