@@ -167,7 +167,7 @@ export const getColumns = (): ColumnDef<SermonDetails>[] => [
   },
   {
     accessorKey: "mp4",
-    header: () => <div>講道視頻 (MP4)</div>,
+    header: () => <div>講道錄影 (MP4)</div>,
     meta: { className: "w-[16%]" },
     cell: ({ row }) => (
       <ProtectedAssetCell 
