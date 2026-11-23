@@ -16,7 +16,7 @@ export type SermonDetails = {
   session: "lunch" | "third" | "christmas"
   topic: string
   verse: string
-  powerpoint: string | null
+  // powerpoint: string | null
   mp3: string | null
   mp4: string | null
 }
@@ -51,7 +51,7 @@ function ProtectedAssetCell({
   downloadUrl
 }: { 
   value: string | null
-  type: "ppt" | "mp3" | "mp4"
+  type: "mp3" | "mp4"
   downloadUrl: string | null
 }) {
   const { isUnlocked, handleAssetAccess } = useAuth()
@@ -67,7 +67,7 @@ function ProtectedAssetCell({
   const handleAccess = () => {
     handleAssetAccess({ 
       name: value,
-      type: type === "ppt" ? "簡報 (PPT)" : (type === "mp3" ? "錄音 (MP3)" : "視頻 (MP4)"),
+      type: type === "mp3" ? "錄音 (MP3)" : "視頻 (MP4)",
       downloadUrl: downloadUrl
     })
   }
@@ -77,7 +77,7 @@ function ProtectedAssetCell({
       onClick={handleAccess}
       className="inline-flex items-center gap-1.5 font-medium text-brand-orange hover:underline focus:outline-none cursor-pointer text-left"
     >
-      {type === "ppt" ? <FileText className="h-3.5 w-3.5" /> : <Music className="h-3.5 w-3.5" />}
+      {type === "mp3" ? <FileText className="h-3.5 w-3.5" /> : <Music className="h-3.5 w-3.5" />}
       <span>{value}</span>
       {!isUnlocked && <Lock className="h-3 w-3 text-muted-foreground" />}
     </button>
@@ -141,18 +141,18 @@ export const getColumns = (): ColumnDef<SermonDetails>[] => [
     accessorKey: "verse",
     header: () => <div className="">經文</div>
   },
-  {
-    accessorKey: "powerpoint",
-    header: () => <div>簡報 (PPT)</div>,
-    meta: { className: "w-[12%]" },
-    cell: ({ row }) => (
-      <ProtectedAssetCell 
-        value={row.getValue("powerpoint") ? "按此下載" : null } 
-        type="ppt" 
-        downloadUrl={row.getValue("powerpoint")}
-      />
-    ),
-  },
+  // {
+  //   accessorKey: "powerpoint",
+  //   header: () => <div>簡報 (PPT)</div>,
+  //   meta: { className: "w-[12%]" },
+  //   cell: ({ row }) => (
+  //     <ProtectedAssetCell 
+  //       value={row.getValue("powerpoint") ? "按此下載" : null } 
+  //       type="ppt" 
+  //       downloadUrl={row.getValue("powerpoint")}
+  //     />
+  //   ),
+  // },
   {
     accessorKey: "mp3",
     header: () => <div>講道錄音 (MP3)</div>,

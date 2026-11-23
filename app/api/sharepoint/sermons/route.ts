@@ -62,7 +62,7 @@ export async function GET() {
             speaker: fields.Speaker,
             topic: fields.Topic,
             verse: fields.Verse,
-            powerpoint: fields.MediaType === 'PPT' ? item["@microsoft.graph.downloadUrl"] : null,
+            // powerpoint: fields.MediaType === 'PPT' ? item["@microsoft.graph.downloadUrl"] : null,
             mp3: fields.MediaType === 'MP3' ? item["@microsoft.graph.downloadUrl"] : null,
             mp4: fields.MediaType === 'MP4' ? item["@microsoft.graph.downloadUrl"] : null
           };
@@ -86,7 +86,7 @@ export async function GET() {
           date: currentFile.date,
           session: currentFile.session,
           verse: currentFile.verse,
-          powerpoint: null,
+          // powerpoint: null,
           mp3: null,
           mp4: null
         };
@@ -95,9 +95,10 @@ export async function GET() {
       // if the current file is a PPT, set the powerpoint field
       // if it's an MP3, set the mp3 field
       // if it's an MP4, set the mp4 field
-      if (currentFile.powerpoint) {
-        accumulator[key].powerpoint = currentFile.powerpoint;
-      } else if (currentFile.mp3) {
+      // if (currentFile.powerpoint) {
+      //   accumulator[key].powerpoint = currentFile.powerpoint;
+      // } else if (currentFile.mp3) {
+      if (currentFile.mp3) {
         accumulator[key].mp3 = currentFile.mp3;
       } else if (currentFile.mp4) {
         accumulator[key].mp4 = currentFile.mp4;
