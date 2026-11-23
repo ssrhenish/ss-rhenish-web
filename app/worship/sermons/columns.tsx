@@ -1,7 +1,7 @@
 "use client"
 
 import { ColumnDef, SortDirection } from "@tanstack/react-table"
-import { ArrowDown, ArrowUp, ArrowUpDown, Lock, FileText, Music } from "lucide-react"
+import { ArrowDown, ArrowUp, ArrowUpDown, Lock, Music, Video } from "lucide-react"
 import { DataTableColumnFilter } from "@/components/DataTableColumnFilter"
 import { useAuth } from "@/context/AuthContext"
 
@@ -77,7 +77,7 @@ function ProtectedAssetCell({
       onClick={handleAccess}
       className="inline-flex items-center gap-1.5 font-medium text-brand-orange hover:underline focus:outline-none cursor-pointer text-left"
     >
-      {type === "mp3" ? <FileText className="h-3.5 w-3.5" /> : <Music className="h-3.5 w-3.5" />}
+      {type === "mp3" ? <Music className="h-3.5 w-3.5" /> : <Video className="h-3.5 w-3.5" />}
       <span>{value}</span>
       {!isUnlocked && <Lock className="h-3 w-3 text-muted-foreground" />}
     </button>
